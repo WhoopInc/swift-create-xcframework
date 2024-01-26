@@ -81,12 +81,8 @@ async function installUsingGithubIfRequired() {
     } else {
         core.info("Installing swift-create-xcframework")
         await exec.exec('git', ['clone', 'https://github.com/WhoopInc/swift-create-xcframework.git'])
-        await exec.exec('cd', 'swift-create-xcframework')
-        await exec.exec('pwd')
-        await exec.exec('git', ['fetch'])
-        await exec.exec('git', ['checkout', 'bsneed/xcode15_fix'])
-        await exec.exec('make', 'install')
-        await exec.exec('cd', '..')
+        await exec.exec('ls')
+        await exec.exec('cd', 'swift-create-xcframework && git checkout bsneed/xcode15_fix && make install')
     }
 }
 
