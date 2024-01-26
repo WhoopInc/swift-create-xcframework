@@ -1,5 +1,5 @@
-const core = require('./.action/core')
-const exec = require('./.action/exec')
+const core = require('@actions/core')
+const exec = require('@actions/exec')
 const path = require('path')
 const artifact = require('././.action/artifact')
 const fs = require('fs')
