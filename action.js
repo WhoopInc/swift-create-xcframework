@@ -18,7 +18,7 @@ async function run() {
         let xcconfig = core.getInput('xcconfig', { required: false })
 
         // install ourselves if not installed
-        await installUsingBrewIfRequired('swift-create-xcframework', 'segment-integrations/formulae/swift-create-xcframework')
+        await installUsingBrewIfRequired('segment-integrations/formulae/swift-create-xcframework')
 
         // put together our options
         var options = ['--zip', '--github-action']
