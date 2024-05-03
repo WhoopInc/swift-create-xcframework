@@ -17,8 +17,8 @@ async function run() {
         let platforms = core.getInput('platforms', { required: false })
         let xcconfig = core.getInput('xcconfig', { required: false })
 
-        // Install using github if needed
-        await installUsingGithubIfRequired()
+        // install ourselves if not installed
+        await installUsingBrewIfRequired('swift-create-xcframework', 'segment-integrations/formulae/swift-create-xcframework')
 
         // put together our options
         var options = ['--zip', '--github-action']
@@ -75,17 +75,14 @@ async function run() {
     }
 }
 
-async function installUsingGithubIfRequired() {
-    if (await isInstalled("swift-create-xcframework")) {
-        core.info("swift-create-xcframework is already installed")
+
+async function installUsingBrewIfRequired(package) {
+    if (await isInstalled(package)) {
+        core.info(package + " is already installed.")
+
     } else {
-        core.info("Installing swift-create-xcframework")
-        await exec.exec('sh', 'install.sh')
-//        await exec.exec('git', ['clone', 'https://github.com/WhoopInc/swift-create-xcframework.git;', 'cd swift-create-xcframework;', 'git checkout bsneed/xcode15_fix;', 'make install'])
-//        await exec.exec('ls')
-//        await exec.exec('cd', 'swift-create-xcframework')
-//        await exec.exec('pwd')
-//        await exec.exec('git', 'checkout bsneed/xcode15_fix && make install')
+        core.info("Installing " + package)
+        await exec.exec('brew', ['install', package])
     }
 }
 
